@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const methodOverride=require('method-override');
 const connectDb=require('./server/config/db');
 const {User}=require('./server/config/db')
 const session=require('express-session');
@@ -25,7 +26,7 @@ app.use(passport.session());
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-
+app.use(methodOverride("_method"));
 //connectTodb
 connectDb(process.env.MONGODB_URI);
 
